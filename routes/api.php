@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\RegisterController;
 | routes are loaded by the RouteServiceProvider and all of them will
 |
 */
-// Route::middleware('jwt.auth')->group(function () {
+Route::middleware('jwt.auth')->group(function () {
     Route::apiResource('/applications', ApplicationController::class)->except(['index','show']);
     Route::post('/applications/import', [ApplicationController::class, 'import']);
     Route::apiResource('/users', UserController::class);
@@ -38,7 +38,7 @@ use App\Http\Controllers\Api\RegisterController;
     Route::apiResource('/group_areas', GroupAreaController::class);
     Route::apiResource('/companies', CompanyController::class);
     Route::post('/validate-user', [UserController::class, 'validateUser']);
-// });
+});
 
 Route::get('/applications', [ApplicationController::class, 'index']);
 Route::get('/applications/{applications}', [ApplicationController::class, 'show']);
@@ -47,6 +47,7 @@ Route::get('/reviews', [ReviewsController::class, 'index']);
 Route::post('/register', RegisterController::class)->name('register');
 Route::post('/login', LoginController::class)->name('login');
 Route::post('/password-reset', [LoginController::class, 'passwordReset']); 
+Route::get('/admin-contact', [UserController::class, 'getAdminContact']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

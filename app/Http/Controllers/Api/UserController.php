@@ -105,6 +105,26 @@ class UserController extends Controller
         return new UserResource($user);
     }
     
+    public function getAdminContact()
+    {
+        $admin = User::where('role', 'admin')->first();
+        
+        if ($admin) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil',
+                'data' => [
+                    'email' => $admin->email,
+                    'phone' => $admin->phone
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data admin tidak ditemukan'
+            ], 404);
+        }
+    }
 
     public function destroy(User $user)
     {
