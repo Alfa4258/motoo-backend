@@ -28,6 +28,7 @@ class ApplicationResource extends JsonResource
             'image' => $this->image ?url($this->image) : null,
             'category' => $this->category,
             'tier' => $this->tier,
+            'platform' => $this->platform,
             'user_login' => $this->user_login,
             'group_area' => new GroupAreaResource ($this->groupArea),
             'user_doc' => $this->user_doc,
