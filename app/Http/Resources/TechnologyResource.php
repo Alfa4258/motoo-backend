@@ -19,6 +19,7 @@ class TechnologyResource extends JsonResource
                     return [
                         'id' => $application->id,
                         'name' => $application->short_name,
+                        'image' => $application->image ? url($application->image) : null,
                     ];
                 });
             }), 

@@ -36,7 +36,7 @@ class TopologyController extends Controller
             'group' => 'required',
             'link' => 'required',
             'description' => 'required',
-            'status' =>  'required|in:used,not used',
+            'status' =>  'required|in:in use,not use',
         ]);
 
         if ($validator->fails()) {
@@ -66,7 +66,7 @@ class TopologyController extends Controller
             'group' => 'required',
             'link' => 'required',
             'description' => 'required',
-            'status' =>  'required|in:used, not used',
+            'status' =>  'required|in:in use, not use',
         ]);
     
         if ($validator->fails()) {
