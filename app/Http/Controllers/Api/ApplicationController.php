@@ -331,30 +331,6 @@ class ApplicationController extends Controller
         $this->syncPic($picInput, $picType, $application);
     }
     
-    private function syncPic($picInput, $picType, $application)
-    {
-        if ($picInput) {
-            if (!is_array($picInput)) {
-                $picInput = [$picInput];
-            }
-    
-            $application->pics()->wherePivot('pic_type', $picType)->detach();
-    
-            foreach ($picInput as $picItem) {
-                if (is_numeric($picItem)) {
-                    $pic = Pic::find($picItem);
-                } else {
-                    $pic = Pic::where('name', $picItem)->first();
-                }
-    
-                if ($pic) {
-                    $application->pics()->attach($pic->id, ['pic_type' => $picType]);
-                }
-            }
-        }
-    }
-    
-    
     public function destroy(Application $application)
     {
         Storage::delete('public/posts/' . $application->image);
