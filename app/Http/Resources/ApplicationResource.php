@@ -37,6 +37,7 @@ class ApplicationResource extends JsonResource
                     return [
                         'id' => $review->id,
                         'review_text' => $review->review_text,
+                        'user_id' => $review->user_id,
                         'rating' => $review->rating,
                         'created_at' => $this->created_at->format('Y-m-d H:i:s'),
                         'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
@@ -47,6 +48,7 @@ class ApplicationResource extends JsonResource
                         ],
                     ];
                 });
+
             }),
             'total_review' => $this->whenLoaded('reviews', function() {
                 return count($this->reviews);
